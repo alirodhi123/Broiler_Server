@@ -26,7 +26,7 @@ mongoose.connect(db.url, (err) => {
 	console.log('MongoDB is Connected..');
 });
 
-mongoose.Promise = global.Promise;
+//mongoose.Promise = global.Promise;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
