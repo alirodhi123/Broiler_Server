@@ -8,8 +8,9 @@ var mongoose = require('mongoose');
 
 //Import file roiuters
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+//var usersRouter = require('./routes/users');
 var sensorRouter = require('./routes/sensor');
+var userRouter = require('./routes/user');
 var apiRouter = require('./routes/api');
 
 
@@ -52,9 +53,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 // });
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+//app.use('/users', usersRouter);
 app.use('/sensor', sensorRouter);
 app.use('/api', apiRouter);
+app.use('/user', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

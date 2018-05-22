@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 
-var Sensor = require('../models/broiler_model');
+var BroilerSchema = require('../models/broiler_model');
 
 var SensorController = require('../controllers/sensor');
 

@@ -1,8 +1,8 @@
-var Sensor = require('../models/broiler_model');
+var BroilerSchema = require('../models/broiler_model');
 var mongoose = require('mongoose');
 
 exports.sensorGetAll = (req, res, next) => {
-	Sensor.find()
+	BroilerSchema.find()
 		.select('_id temp hum cdioksida amonia')
 		.exec()
 		.then(docs => {
