@@ -6,27 +6,29 @@ module.exports = function(io){
 		console.log('User connected: ', userSocket);
 
 		socket.on('relay1', function(data){
-			console.log('Relay 1: ', data.status);
+			console.log('Relay Lamp: ', data.status);
 			io.emit('relay1', {status: data.status});
 		});
 
 		socket.on('relay2', function(data){
-			console.log('Relay 2: ', data.status);
+			console.log('Relay Fan: ', data.status);
 			io.emit('relay2', {status: data.status});
 		});
 
 		socket.on('relay3', function(data){
-			console.log('Relay 3: ', data.status);
+			console.log('Relay Spray: ', data.status);
 			io.emit('relay3', {status: data.status});
 		});
 
 		socket.on('relay4', function(data){
-			console.log('Relay 4: ', data.status);
+			console.log('Relay Exhaust: ', data.status);
 			io.emit('relay4', {status: data.status});
 		});
 
 		socket.on('disconnect', function(){
-			console.log('User disconnect!');
+			userSocket--;
+			console.log('User disconnect!', userSocket);
+
 		});
 	});
 };

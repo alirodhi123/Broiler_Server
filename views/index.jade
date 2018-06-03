@@ -2,11 +2,28 @@ extends layout
 
 block content
   h1= title
+  h3 Relay Lamp
   button#btnOn ON
   button#btnOff OFF
-  button#btnon ON1
-  button#btnoff OFF1
+  br
+  br
+  h3 Relay Fan
+  button#btnOnFan ON
+  button#btnOffFan OFF
+  br
+  br
+  h3 Relay Spray
+  button#btnOnSpray ON
+  button#btnOffSpray OFF
+  br
+  br
+  h3 Relay Exhaust
+  button#btnOnExhaust ON
+  button#btnOffExhaust OFF
+  br
   p#pesan
+
+  //p= datasensor
 
   script(src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js")
   script.
@@ -17,7 +34,7 @@ block content
    var btnoff = document.getElementById("btnoff");
 
    //var io = io.connect("https://control-led.herokuapp.com/");
-   var io = io.connect('http://localhost:3000/')
+   var io = io.connect('http://localhost:3038/')
 
    btnOn.addEventListener("click", function(){
     io.emit("relay1", {status: true});
@@ -27,18 +44,42 @@ block content
     io.emit("relay1", {status: false});
    });
 
-   btnon.addEventListener("click", function(){
+   btnOnFan.addEventListener("click", function(){
     io.emit("relay2", {status: true});
-   })
+   });
 
-   btnoff.addEventListener("click", function(){
+   btnOffFan.addEventListener("click", function(){
     io.emit("relay2", {status: false});
-   })
+   });
+
+   btnOnSpray.addEventListener("click", function(){
+    io.emit("relay3", {status: true});
+   });
+
+   btnOffSpray.addEventListener("click", function(){
+    io.emit("relay3", {status: false});
+   });
+
+   btnOnExhaust.addEventListener("click", function(){
+    io.emit("relay4", {status: true});
+   });
+
+   btnOffExhaust.addEventListener("click", function(){
+    io.emit("relay4", {status: false});
+   });
 
    io.on("relay1", function(data){
     pesan.innerHTML = data.status;
    });
 
    io.on("relay2", function(data){
+    pesan.innerHTML = data.status;
+   })
+
+   io.on("relay3", function(data){
+    pesan.innerHTML = data.status;
+   })
+
+   io.on("relay4", function(data){
     pesan.innerHTML = data.status;
    })

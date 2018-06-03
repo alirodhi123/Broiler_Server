@@ -1,69 +1,110 @@
 var BroilerSchema = require('../models/broiler_model');
 var mongoose = require('mongoose');
+var async = require('async');
 
-exports.sensorGetAll = (req, res, next) => {
-	BroilerSchema.find()
-		.select('_id temp hum cdioksida amonia')
-		.exec()
-		.then(docs => {
-			var response = {
-				count: docs.length,
-				sensor: docs.map(doc => {
-					return{
-						_id: doc._id,
-						temp: doc.temp,
-						hum: doc.hum,
-						cdioksida: doc.cdioksida,
-						amonia: doc.amonia,
-						bat: doc.bat
-					}
-				})
-			}
-			console.log(response);
-			res.status(200).json(response);
-		})
-		.catch(err => {
-			res.status(500).json({
-				error: err
-			});
-		});
+// exports.sensorGetAll = (req, res, next) => {
+// 	BroilerSchema.find()
+// 		.select('_id temp hum cdioksida amonia')
+// 		.exec()
+// 		.then(docs => {
+// 			var response = {
+// 				count: docs.length,
+// 				sensor: docs.map(doc => {
+// 					return{
+// 						_id: doc._id,
+// 						temp: doc.temp,
+// 						hum: doc.hum,
+// 						cdioksida: doc.cdioksida,
+// 						amonia: doc.amonia,
+// 						bat: doc.bat
+// 					}
+// 				})
+// 			}
+// 			console.log(response);
+// 			res.status(200).json(response);
+// 		})
+// 		.catch(err => {
+// 			res.status(500).json({
+// 				error: err
+// 			});
+// 		});
+// }
+
+exports.sensorGetAll = (req, res)=>{
+	async.series({
+   		sensor: function(cb){
+    		BroilerSchema.findById("5b02dc72584ab60f90b5076b").exec(function(err, data){
+     			if(err){
+     				return console.log(err);	
+     			} 
+     		cb(err, data.sensor);
+    		});
+   		}
+  	}, function(err, data){
+   			return res.status(200).json({
+     			status: "success",
+     			message: "Berhasil mendapatkan data..",
+     			data: data.sensor
+   			});
+  		});
 }
 
-exports.sensorCreate = (req, res, next) => {
-	var sensor = new Sensor({
-		_id: new mongoose.Types.ObjectId(),
-		temp: req.body.temp,
-		hum: req.body.hum,
-		cdioksida: req.body.cdioksida,
-		amonia: req.body.amonia,
-		bat: req.body.bat
-	});
-	sensor
-		.save()
-		.then(result => {
-			res.status(201).json({
-			message: 'Handling POST to /sensor',
-			createSensor: {
-				temp: result.temp,
-				hum: result.hum,
-				cdioksida: result.cdioksida,
-				amonia: result.amonia,
-				bat: result.bat,
-				_id: result._id
+exports.sensorCreate = async (req, res)=>{
+	var id_user = "5b02dc72584ab60f90b5076b";
+ 	var dataSensor = {
+ 		$push: {
+ 			sensor: {
+  				temp: req.body.TCA,
+				hum: req.body.HUMA,
+				cdioksida: req.body.CO2,
+				amonia: req.body.NH3
+				//bat: req.body.bat,
+				//tanngal: req.body.tanngal
 			}
-		})
-		.catch(err => {
-			concole.log(err);
-			res.status(500).json({
-				error: err
-			});
-		});
-	});
-}
+		}
+};
+ BroilerSchema.findByIdAndUpdate(id_user, dataSensor, (err, data)=>{
+ 	if(err){
+ 		return console.log(err);	
+ 	} 
+  	res.send(data);
+ });
+};
+// exports.sensorCreate = (req, res, next) => {
+// 	var sensor = new BroilerSchema({
+// 		_id: new mongoose.Types.ObjectId(),
+// 		temp: req.body.temp,
+// 		hum: req.body.hum,
+// 		cdioksida: req.body.cdioksida,
+// 		amonia: req.body.amonia,
+// 		bat: req.body.bat
+// 	});
+// 	sensor
+// 		.save()
+// 		.then(result => {
+// 			res.status(201).json({
+// 			message: 'Handling POST to /sensor',
+// 			createSensor: {
+// 				temp: result.temp,
+// 				hum: result.hum,
+// 				cdioksida: result.cdioksida,
+// 				amonia: result.amonia,
+// 				bat: result.bat,
+// 				_id: result._id
+// 			}
+// 		})
+// 		.catch(err => {
+// 			concole.log(err);
+// 			res.status(500).json({
+// 				error: err
+// 			});
+// 		});
+// 	});
+// }
 
 exports.sensorGetId = (req, res, next) => {
 	var id = req.params.sensorId; //Get the ID
-	Sensor.findById(id)
+	BroilerSchema.findById(id)
 		.select('_id temp hum cdioksida amonia')
 		.exec()
 		.then(doc => {
@@ -92,7 +133,7 @@ exports.sensorUpdate = (req, res, next) => {
 	for (var ops of req.body){
 		updateOps[ops.propName] = ops.value;
 	}
-	Sensor.update({_id: id}, { $set: updateOps})
+	BroilerSchema.update({_id: id}, { $set: updateOps})
 		.exec()
 		.then(result => {
 			console.log(result);
@@ -107,7 +148,7 @@ exports.sensorUpdate = (req, res, next) => {
 
 exports.sensorDeleteId = (req, res, next) => {
 	var id = req.params.sensorId;
-	Sensor.remove({_id: id})
+	BroilerSchema.remove({_id: id})
 		.exec()
 		.then(result => {
 			res.status(200).json({

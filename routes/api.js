@@ -18,13 +18,13 @@ router.post('/create', function(req, res, next) {
 
 router.get('/', function(req, res, next) {
 	Coba.find({}, function(err, data){
-		res.render('tampil', {datasensor: data});
+		res.render('index', {datasensor: data});
 	});
 });
 
 router.get('/hapus', function(req, res, next) {
 	Coba.remove({}, function(err, data){
-		res.render('tampil', {datasensor: data});
+		res.render('index', {datasensor: data});
 	});
 });
 
