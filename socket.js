@@ -25,6 +25,11 @@ module.exports = function(io){
 			io.emit('relay4', {status: data.status});
 		});
 
+		socket.on('readsensor', function(data){
+			console.log('Waspmote sensor gas: ', data.status);
+			io.emit('readsensor', {status: data.status});
+		});
+
 		socket.on('disconnect', function(){
 			userSocket--;
 			console.log('User disconnect!', userSocket);

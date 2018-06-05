@@ -21,6 +21,11 @@ block content
   button#btnOnExhaust ON
   button#btnOffExhaust OFF
   br
+  br
+  h3 Start Sensor
+  button#btnOnSerial ON
+  button#btnOffSerial OFF
+  br
   p#pesan
 
   //p= datasensor
@@ -36,6 +41,8 @@ block content
    var btnOffSpray = document.getElementById("btnOffSpray");
    var btnOnExhaust = document.getElementById("btnOnExhaust");
    var btnOffExhaust = document.getElementById("btnOffExhaust");
+   var btnOnSerial = document.getElementById("btnOnSerial");
+   var btnOffSerial = document.getElementById("btnOffSerial");
 
    //var io = io.connect("https://control-led.herokuapp.com/");
    var io = io.connect('http://localhost:3038/')
@@ -72,6 +79,14 @@ block content
     io.emit("relay4", {status: false});
    });
 
+   btnOnSerial.addEventListener("click", function(){
+    io.emit("readsensor", {status: true});
+   });
+
+   btnOffSerial.addEventListener("click", function(){
+    io.emit("readsensor", {status: false});
+   });
+
    io.on("relay1", function(data){
     pesan.innerHTML = data.status;
    });
@@ -85,5 +100,9 @@ block content
    })
 
    io.on("relay4", function(data){
+    pesan.innerHTML = data.status;
+   })
+
+   io.on("readsensor", function(data){
     pesan.innerHTML = data.status;
    })

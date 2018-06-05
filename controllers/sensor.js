@@ -30,6 +30,7 @@ var async = require('async');
 // 		});
 // }
 
+// mendapatkan semua data yang ada di database
 exports.sensorGetAll = (req, res)=>{
 	async.series({
    		sensor: function(cb){
@@ -49,6 +50,7 @@ exports.sensorGetAll = (req, res)=>{
   		});
 }
 
+// push data sensor ke dalam database
 exports.sensorCreate = async (req, res)=>{
 	var id_user = "5b02dc72584ab60f90b5076b";
  	var dataSensor = {
