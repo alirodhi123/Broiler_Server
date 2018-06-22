@@ -9,7 +9,7 @@ var broilerSchema = mongoose.Schema({
 		sensor: Boolean
 	},
 	logs:[{
-		jenis: String,
+		title: String,
 		keterangan: String,
 		tanggal: {type: Date, default: Date.now}
 	}],
