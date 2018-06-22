@@ -84,11 +84,10 @@ exports.getLogExhaust = (req, res)=>{
 
 // Create Log Lamp
 exports.createLogsLamp = function(req, res){
-	console.log( req.body.title);
 	var id_user = "5b02dc72584ab60f90b5076b";
 	var pushLogsLamp = {
 		$push: {
-			lamp: {
+			logs: {
 				title: req.body.title,
 				keterangan: req.body.keterangan
 			}
@@ -107,7 +106,7 @@ exports.createLogsFan = function(req, res){
 	var id_user = "5b02dc72584ab60f90b5076b";
 	var pushLogsFan = {
 		$push: {
-			fan: {
+			logs: {
 				title: req.body.title,
 				keterangan: req.body.keterangan
 			}
@@ -126,7 +125,7 @@ exports.createLogsSpray = function(req, res){
 	var id_user = "5b02dc72584ab60f90b5076b";
 	var pushLogsSpray = {
 		$push: {
-			spray: {
+			logs: {
 				title: req.body.title,
 				keterangan: req.body.keterangan
 			}
@@ -145,7 +144,7 @@ exports.createLogsExhaust = function(req, res){
 	var id_user = "5b02dc72584ab60f90b5076b";
 	var pushLogsExhaust = {
 		$push: {
-			exhaust: {
+			logs: {
 				title: req.body.title,
 				keterangan: req.body.keterangan
 			}
