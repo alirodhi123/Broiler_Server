@@ -2,7 +2,87 @@ var BroilerSchema = require('../models/broiler_model');
 var mongoose = require('mongoose');
 var async = require('async');
 
-// Log Lamp
+// Get log lamp
+exports.getLogLamp = (req, res)=>{
+	async.series({
+   		lamp: function(cb){
+    		BroilerSchema.findById("5b02dc72584ab60f90b5076b").exec(function(err, data){
+     			if(err){
+     				return console.log(err);	
+     			} 
+     		cb(err, data.lamp);
+    		});
+   		}
+  	}, function(err, data){
+   			return res.status(200).json({
+     			status: "success",
+     			message: "Berhasil mendapatkan data log lamp",
+     			data: data.lamp
+   			});
+  		});
+}
+
+// Get log fan
+exports.getLogFan = (req, res)=>{
+	async.series({
+   		fan: function(cb){
+    		BroilerSchema.findById("5b02dc72584ab60f90b5076b").exec(function(err, data){
+     			if(err){
+     				return console.log(err);	
+     			} 
+     		cb(err, data.fan);
+    		});
+   		}
+  	}, function(err, data){
+   			return res.status(200).json({
+     			status: "success",
+     			message: "Berhasil mendapatkan data log fan",
+     			data: data.fan
+   			});
+  		});
+}
+
+// Get log spray
+exports.getLogSpray = (req, res)=>{
+	async.series({
+   		spray: function(cb){
+    		BroilerSchema.findById("5b02dc72584ab60f90b5076b").exec(function(err, data){
+     			if(err){
+     				return console.log(err);	
+     			} 
+     		cb(err, data.spray);
+    		});
+   		}
+  	}, function(err, data){
+   			return res.status(200).json({
+     			status: "success",
+     			message: "Berhasil mendapatkan data log spray",
+     			data: data.spray
+   			});
+  		});
+}
+
+// Get log exhaust fan
+exports.getLogExhaust = (req, res)=>{
+	async.series({
+   		exhaust: function(cb){
+    		BroilerSchema.findById("5b02dc72584ab60f90b5076b").exec(function(err, data){
+     			if(err){
+     				return console.log(err);	
+     			} 
+     		cb(err, data.exhaust);
+    		});
+   		}
+  	}, function(err, data){
+   			return res.status(200).json({
+     			status: "success",
+     			message: "Berhasil mendapatkan data log exhaust fan",
+     			data: data.exhaust
+   			});
+  		});
+}
+
+// Create Log Lamp
 exports.createLogsLamp = function(req, res){
 	console.log( req.body.title);
 	var id_user = "5b02dc72584ab60f90b5076b";
@@ -22,7 +102,7 @@ exports.createLogsLamp = function(req, res){
 	});
 };
 
-// Log Fan
+// Create Log Fan
 exports.createLogsFan = function(req, res){
 	var id_user = "5b02dc72584ab60f90b5076b";
 	var pushLogsFan = {
@@ -41,7 +121,7 @@ exports.createLogsFan = function(req, res){
 	});
 };
 
-// Log Spray
+// Create Log Spray
 exports.createLogsSpray = function(req, res){
 	var id_user = "5b02dc72584ab60f90b5076b";
 	var pushLogsSpray = {
@@ -60,7 +140,7 @@ exports.createLogsSpray = function(req, res){
 	});
 };
 
-// Loh Exhaust fan
+// Create Log Exhaust fan
 exports.createLogsExhaust = function(req, res){
 	var id_user = "5b02dc72584ab60f90b5076b";
 	var pushLogsExhaust = {
