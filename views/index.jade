@@ -45,7 +45,7 @@ block content
    var btnOffSerial = document.getElementById("btnOffSerial");
 
    //var io = io.connect("https://control-led.herokuapp.com/");
-   var io = io.connect('http://localhost:3038/')
+   var io = io.connect('https://ali.jagopesan.com/')
 
    btnOn.addEventListener("click", function(){
     io.emit("relay1", {status: true});
