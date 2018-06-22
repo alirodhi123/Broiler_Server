@@ -1,1 +1,1 @@
-{"_id":{"$oid":"5b02dc72584ab60f90b5076b"},"relay":{"lamp":false,"fan":false,"spray":false,"exhaust":false},"farmer":"alirodhi","logs":[],"sensor":[],"__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5b2cc36cadbf751d34d76a67"},"relay":{"lamp":false,"fan":false,"spray":false,"exhaust":false},"farmer":"alirodhi","logs":[],"sensor":[],"__v":{"$numberInt":"0"}}

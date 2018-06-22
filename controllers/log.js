@@ -3,88 +3,88 @@ var mongoose = require('mongoose');
 var async = require('async');
 
 // Get log lamp
-exports.getLogLamp = (req, res)=>{
+exports.getLogAll = (req, res)=>{
 	async.series({
-   		lamp: function(cb){
-    		BroilerSchema.findById("5b02dc72584ab60f90b5076b").exec(function(err, data){
+   		logs: function(cb){
+    		BroilerSchema.findById("5b2cc36cadbf751d34d76a67").exec(function(err, data){
      			if(err){
      				return console.log(err);	
      			} 
-     		cb(err, data.lamp);
+     		cb(err, data.logs);
     		});
    		}
   	}, function(err, data){
    			return res.status(200).json({
      			status: "success",
-     			message: "Berhasil mendapatkan data log lamp",
-     			data: data.lamp
+     			message: "Berhasil mendapatkan data log",
+     			data: data.logs
    			});
   		});
 }
 
-// Get log fan
-exports.getLogFan = (req, res)=>{
-	async.series({
-   		fan: function(cb){
-    		BroilerSchema.findById("5b02dc72584ab60f90b5076b").exec(function(err, data){
-     			if(err){
-     				return console.log(err);	
-     			} 
-     		cb(err, data.fan);
-    		});
-   		}
-  	}, function(err, data){
-   			return res.status(200).json({
-     			status: "success",
-     			message: "Berhasil mendapatkan data log fan",
-     			data: data.fan
-   			});
-  		});
-}
+// // Get log fan
+// exports.getLogFan = (req, res)=>{
+// 	async.series({
+//    		fan: function(cb){
+//     		BroilerSchema.findById("5b2cc36cadbf751d34d76a67").exec(function(err, data){
+//      			if(err){
+//      				return console.log(err);	
+//      			} 
+//      		cb(err, data.fan);
+//     		});
+//    		}
+//   	}, function(err, data){
+//    			return res.status(200).json({
+//      			status: "success",
+//      			message: "Berhasil mendapatkan data log fan",
+//      			data: data.fan
+//    			});
+//   		});
+// }
 
-// Get log spray
-exports.getLogSpray = (req, res)=>{
-	async.series({
-   		spray: function(cb){
-    		BroilerSchema.findById("5b02dc72584ab60f90b5076b").exec(function(err, data){
-     			if(err){
-     				return console.log(err);	
-     			} 
-     		cb(err, data.spray);
-    		});
-   		}
-  	}, function(err, data){
-   			return res.status(200).json({
-     			status: "success",
-     			message: "Berhasil mendapatkan data log spray",
-     			data: data.spray
-   			});
-  		});
-}
+// // Get log spray
+// exports.getLogSpray = (req, res)=>{
+// 	async.series({
+//    		spray: function(cb){
+//     		BroilerSchema.findById("5b2cc36cadbf751d34d76a67").exec(function(err, data){
+//      			if(err){
+//      				return console.log(err);	
+//      			} 
+//      		cb(err, data.spray);
+//     		});
+//    		}
+//   	}, function(err, data){
+//    			return res.status(200).json({
+//      			status: "success",
+//      			message: "Berhasil mendapatkan data log spray",
+//      			data: data.spray
+//    			});
+//   		});
+// }
 
-// Get log exhaust fan
-exports.getLogExhaust = (req, res)=>{
-	async.series({
-   		exhaust: function(cb){
-    		BroilerSchema.findById("5b02dc72584ab60f90b5076b").exec(function(err, data){
-     			if(err){
-     				return console.log(err);	
-     			} 
-     		cb(err, data.exhaust);
-    		});
-   		}
-  	}, function(err, data){
-   			return res.status(200).json({
-     			status: "success",
-     			message: "Berhasil mendapatkan data log exhaust fan",
-     			data: data.exhaust
-   			});
-  		});
-}
+// // Get log exhaust fan
+// exports.getLogExhaust = (req, res)=>{
+// 	async.series({
+//    		exhaust: function(cb){
+//     		BroilerSchema.findById("5b2cc36cadbf751d34d76a67").exec(function(err, data){
+//      			if(err){
+//      				return console.log(err);	
+//      			} 
+//      		cb(err, data.exhaust);
+//     		});
+//    		}
+//   	}, function(err, data){
+//    			return res.status(200).json({
+//      			status: "success",
+//      			message: "Berhasil mendapatkan data log exhaust fan",
+//      			data: data.exhaust
+//    			});
+//   		});
+// }
 
 // Create Log Lamp
 exports.createLogsLamp = function(req, res){
-	var id_user = "5b02dc72584ab60f90b5076b";
+	var id_user = "5b2cc36cadbf751d34d76a67";
 	var pushLogsLamp = {
 		$push: {
 			logs: {
@@ -103,7 +103,7 @@ exports.createLogsLamp = function(req, res){
 
 // Create Log Fan
 exports.createLogsFan = function(req, res){
-	var id_user = "5b02dc72584ab60f90b5076b";
+	var id_user = "5b2cc36cadbf751d34d76a67";
 	var pushLogsFan = {
 		$push: {
 			logs: {
@@ -122,7 +122,7 @@ exports.createLogsFan = function(req, res){
 
 // Create Log Spray
 exports.createLogsSpray = function(req, res){
-	var id_user = "5b02dc72584ab60f90b5076b";
+	var id_user = "5b2cc36cadbf751d34d76a67";
 	var pushLogsSpray = {
 		$push: {
 			logs: {
@@ -141,7 +141,7 @@ exports.createLogsSpray = function(req, res){
 
 // Create Log Exhaust fan
 exports.createLogsExhaust = function(req, res){
-	var id_user = "5b02dc72584ab60f90b5076b";
+	var id_user = "5b2cc36cadbf751d34d76a67";
 	var pushLogsExhaust = {
 		$push: {
 			logs: {

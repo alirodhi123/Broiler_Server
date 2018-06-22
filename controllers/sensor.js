@@ -34,7 +34,7 @@ var async = require('async');
 exports.sensorGetAll = (req, res)=>{
 	async.series({
    		sensor: function(cb){
-    		BroilerSchema.findById("5b02dc72584ab60f90b5076b").exec(function(err, data){
+    		BroilerSchema.findById("5b2cc36cadbf751d34d76a67").exec(function(err, data){
      			if(err){
      				return console.log(err);	
      			} 
@@ -52,7 +52,7 @@ exports.sensorGetAll = (req, res)=>{
 
 // push data sensor ke dalam database
 exports.sensorCreate = async (req, res)=>{
-	var id_user = "5b02dc72584ab60f90b5076b";
+	var id_user = "5b2cc36cadbf751d34d76a67";
  	var dataSensor = {
  		$push: {
  			sensor: {
