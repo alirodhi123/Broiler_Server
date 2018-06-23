@@ -43,7 +43,7 @@ exports.getLogAll = function(req, res){
    }
   }
  ]).exec(function(err, result){
-   res.json(result).send(status: "success");
+   res.json(result).send({status: "success"});
  });
 };
 
