@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var BroilerSchema = require('../models/broiler_model');
 var LogController = require('../controllers/log');
 
-router.get('/get-log', LogController.getLogAll);
+router.get('/get-log/:noteId', LogController.getLogAll);
 
 // router.get('/get-log/fan', LogController.getLogFan);
 
