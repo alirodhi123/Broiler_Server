@@ -45,8 +45,7 @@ exports.getLogAll = function(req, res){
  ]).exec(function(err, result){
  	if (err) {
  		res.status(404).send({
- 			message: err,
- 			data: []
+ 			message: err
  		});
  	} else {
  		res.status(200).send({
@@ -55,7 +54,7 @@ exports.getLogAll = function(req, res){
  			data: result
  		});
  	}
-   res.json(result);
+   // res.json(result);
  });
 };
 
