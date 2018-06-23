@@ -42,12 +42,25 @@ exports.getLogAll = function(req, res){
     "logs.tanggal": -1
    }
   }
- ]).exec(function(err, result){
- 	res.status(200).json({
- 		status: "success",
-     	message: "Berhasil mendapatkan data log",
-     	data: result.logs
-     }); 
+ ]).exec(function(req, res){
+
+ 	async.series({
+   		logs: function(cb){
+    		BroilerSchema.findById("5b2cc36cadbf751d34d76a67").exec(function(err, data){
+     			if(err){
+     				return console.log(err);	
+     			} 
+     		cb(err, data.logs);
+    		});
+   		}
+  	}, function(err, data){
+   			return res.status(200).json({
+     			status: "success",
+     			message: "Berhasil mendapatkan data log",
+     			data: data.logs
+   			});
+  		});
+   
  });
 };
 
