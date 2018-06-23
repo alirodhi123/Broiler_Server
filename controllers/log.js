@@ -24,11 +24,11 @@ var async = require('async');
 
 exports.getLogAll = function(req, res){
  BroilerSchema.aggregate([
-  {
-    $match: {
-      _id: mongoose.Types.ObjectId(req.params.noteId)
-    }
-  },
+  // {
+  //   $match: {
+  //     _id: mongoose.Types.ObjectId(req.params.noteId)
+  //   }
+  // },
   {
    $unwind: "$logs"
   },
@@ -54,7 +54,7 @@ exports.getLogAll = function(req, res){
  			data: result
  		});
  	}
-   // res.json(result);
+   //res.json(result);
  });
 };
 
