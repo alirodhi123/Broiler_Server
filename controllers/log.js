@@ -6,7 +6,8 @@ var async = require('async');
 exports.getLogAll = (req, res)=>{
 	async.series({
    		logs: function(cb){
-    		BroilerSchema.findById("5b2cc36cadbf751d34d76a67").exec(function(err, data){
+   			var mysort = {tanggal: -1};
+    		BroilerSchema.findById("5b2cc36cadbf751d34d76a67").sort(mysort).exec(function(err, data){
      			if(err){
      				return console.log(err);	
      			} 
