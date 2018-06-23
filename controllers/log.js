@@ -3,50 +3,61 @@ var mongoose = require('mongoose');
 var async = require('async');
 
 // Get log lamp
-exports.getLogAll = (req, res)=>{
-	async.series({
-   		logs: function(cb){
-   			var mysort = {tanggal: -1};
-    		BroilerSchema.findById("5b2cc36cadbf751d34d76a67").sort(mysort).exec(function(err, data){
-     			if(err){
-     				return console.log(err);	
-     			} 
-     		cb(err, data.logs);
-    		});
-   		}
-  	}, function(err, data){
-   			return res.status(200).json({
-     			status: "success",
-     			message: "Berhasil mendapatkan data log",
-     			data: data.logs
-   			});
-  		});
-}
+// exports.getLogAll = (req, res)=>{
+// 	async.series({
+//    		logs: function(cb){
+//     		BroilerSchema.findById("5b2cc36cadbf751d34d76a67").exec(function(err, data){
+//      			if(err){
+//      				return console.log(err);	
+//      			} 
+//      		cb(err, data.logs);
+//     		});
+//    		}
+//   	}, function(err, data){
+//    			return res.status(200).json({
+//      			status: "success",
+//      			message: "Berhasil mendapatkan data log",
+//      			data: data.logs
+//    			});
+//   		});
+// }
 
-// exports.getLogAll = function(req, res){
-//  BroilerSchema.aggregate([
-//   {
-//     $match: {
-//       _id: mongoose.Types.ObjectId(req.params.noteId)
-//     }
-//   },
-//   {
-//    $unwind: "$logs"
-//   },
-//   {
-//    $project: {
-//     logs: 1
-//    }
-//   },
-//   {
-//    $sort: {
-//     "logs.tanggal": -1
-//    }
-//   }
-//  ]).exec(function(err, result){
-//    res.json(result).send({status: "success"});
-//  });
-// };
+exports.getLogAll = function(req, res){
+ BroilerSchema.aggregate([
+  {
+    $match: {
+      _id: mongoose.Types.ObjectId(req.params.noteId)
+    }
+  },
+  {
+   $unwind: "$logs"
+  },
+  {
+   $project: {
+    logs: 1
+   }
+  },
+  {
+   $sort: {
+    "logs.tanggal": -1
+   }
+  }
+ ]).exec(function(err, result){
+ 	if (err) {
+ 		res.status(404).send({
+ 			message: err,
+ 			data: []
+ 		});
+ 	} else {
+ 		res.status(200).send({
+ 			status: "success",
+ 			message: "berhasil",
+ 			data: result
+ 		});
+ 	}
+   res.json(result);
+ });
+};
 
 
 // // Get log fan
