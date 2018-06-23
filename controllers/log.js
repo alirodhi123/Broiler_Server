@@ -43,11 +43,11 @@ exports.getLogAll = function(req, res){
    }
   }
  ]).exec(function(err, result){
- 	return {
+ 	res.status(200).json({
  		status: "success",
-     	message: "Berhasil mendapatkan data log"
- 	}
-   res.json(result);
+     	message: "Berhasil mendapatkan data log",
+     	data: result.logs
+     }); 
  });
 };
 
