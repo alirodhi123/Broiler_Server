@@ -42,12 +42,12 @@ exports.getLogAll = function(req, res){
     "logs.tanggal": -1
    }
   }
- ]).exec(function(err, data){
+ ]).exec(function(err, result){
    //res.json(result);
    res.status(200).json({
      			status: "success",
      			message: "Berhasil mendapatkan data log",
-     			data: data.logs
+     			data: result.logs
    });
  });
 };
