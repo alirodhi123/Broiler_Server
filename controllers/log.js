@@ -17,7 +17,7 @@ exports.getLogAll = (req, res)=>{
    			return res.status(200).json({
      			status: "success",
      			message: "Berhasil mendapatkan data log",
-     			data: data.logs
+     			//data: data.logs
    			});
   		});
 }
