@@ -43,19 +43,25 @@ exports.getLogAll = function(req, res){
    }
   }
  ]).exec(function(err, result){
- 	// if (err) {
- 	// 	res.status(404).send({
- 	// 		message: err
- 	// 	});
- 	// } else {
- 	// 	res.status(200).send({
- 	// 		status: "success",
- 	// 		message: "berhasil",
- 	// 		data: result
- 	// 	});
- 	// }
-   res.json(result);
+ 	if (err) {
+ 		res.status(404).send({
+ 			message: err
+ 		});
+ 	} else {
+ 		res.status(200).send({
+ 			status: "success",
+ 			message: "berhasil",
+ 			data: result
+ 		});
+ 	}
+   //res.json(result);
  });
+
+ return res.status(200).json({
+     			status: "success",
+     			message: "Berhasil mendapatkan data log",
+     			data: data.logs
+   			});
 };
 
 
