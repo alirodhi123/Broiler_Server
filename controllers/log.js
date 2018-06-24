@@ -41,6 +41,19 @@ exports.getLogAll = function(req, res){
    $sort: {
     "logs.tanggal": -1
    }
+  },
+  {
+  	$group: {
+  		_id: "$_id",
+  		log: {
+  			$push: {
+  				"_id": "$logs._id",
+                "title": "$logs.title",
+                "keterangan": "$logs.keterangan",
+                "tanggal": "$logs.tanggal"
+  			}
+  		}
+  	}
   }
  ]).exec(function(err, result){
  	if (err) {
