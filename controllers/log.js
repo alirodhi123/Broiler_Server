@@ -64,7 +64,7 @@ exports.getLogAll = function(req, res){
  		res.status(200).send({
  			status: "success",
  			message: "berhasil",
- 			data: result
+ 			data: result[0].log
  		});
  	}
    //res.json(result);
