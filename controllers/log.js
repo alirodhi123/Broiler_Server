@@ -54,14 +54,8 @@ exports.getLogAll = function(req, res){
  	// 		data: result
  	// 	});
  	// }
-   //res.json(result);
+   res.json(result);
  });
-
- res.status(200).json({
-     			status: "success",
-     			message: "Berhasil mendapatkan data log",
-     			data: data.logs
-   			});
 };
 
 
