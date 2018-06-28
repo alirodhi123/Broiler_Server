@@ -23,6 +23,8 @@ var async = require('async');
 // }
 
 exports.getLogAll = function(req, res){
+ var today = new Date();
+ var todayNight = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate(), 00, 00, 00, 00);
  BroilerSchema.aggregate([
   // {
   //   $match: {
@@ -34,7 +36,8 @@ exports.getLogAll = function(req, res){
   },
   {
    $project: {
-    logs: 1
+    logs: 1,
+    tanggal: {$gt: [todayNight, 100]}
    }
   },
   {
