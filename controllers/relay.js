@@ -2,6 +2,7 @@ var BroilerSchema = require('../models/broiler_model');
 var mongoose = require('mongoose');
 var async = require('async');
 
+
 exports.getRelayState = (req, res) => {
 	var id_user = "5b2cc36cadbf751d34d76a67";
 	BroilerSchema.findById(id_user, (err, data) => {
@@ -12,6 +13,26 @@ exports.getRelayState = (req, res) => {
 		console.log(data.relay);
 	});
 };
+
+// exports.getRelayState = (req, res)=>{
+// 	async.series({
+//    		relay: function(cb){
+//     		BroilerSchema.findById("5b2cc36cadbf751d34d76a67").exec(function(err, data){
+//      			if(err){
+//      				return console.log(err);	
+//      			} 
+//      		cb(err, data.relay);
+//     		});
+//    		}
+//   	}, function(err, data){
+//    			return res.status(200).json({
+//      			status: "success",
+//      			message: "Berhasil mendapatkan state relay..",
+//      			data: data.relay
+//    			});
+//   		});
+// }
+
 
 exports.updateRelayLamp = (req, res) => {
 	var id_user = "5b2cc36cadbf751d34d76a67";
