@@ -52,8 +52,8 @@ block content
    var btnOffOtomatis = document.getElementById("btnOffOtomatis");
 
    //var io = io.connect("https://control-led.herokuapp.com/");
-   //var io = io.connect('https://ali.jagopesan.com/')
-   var io = io.connect('http://192.168.43.140:3038/')
+   var io = io.connect('https://ali.jagopesan.com/')
+   //var io = io.connect('http://192.168.43.140:3038/')
 
    btnOn.addEventListener("click", function(){
     io.emit("relay1", {status: true});
