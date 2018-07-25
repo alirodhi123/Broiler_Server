@@ -17,4 +17,6 @@ router.post('/update-relay/exhaust', RelayController.updateRelayExhaust);
 
 router.post('/update-relay/sensor', RelayController.updateRelaySensor);
 
+router.post('/update-relay/otomatis', RelayController.updateRelayOtomatis);
+
 module.exports = router;

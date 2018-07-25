@@ -30,6 +30,11 @@ module.exports = function(io){
 			io.emit('readsensor', {status: data.status});
 		});
 
+		socket.on('otomatis', function(data){
+			console.log('Otomatisasi: ', data.status);
+			io.emit('otomatis', {status: data.status});
+		});
+
 		socket.on('disconnect', function(){
 			userSocket--;
 			console.log('User disconnect!', userSocket);

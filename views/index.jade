@@ -26,6 +26,11 @@ block content
   button#btnOnSerial ON
   button#btnOffSerial OFF
   br
+  br
+  h3 Automatic Mode
+  button#btnOnOtomatis ON
+  button#btnOffOtomatis OFF
+  br
   p#pesan
 
   //p= datasensor
@@ -43,6 +48,8 @@ block content
    var btnOffExhaust = document.getElementById("btnOffExhaust");
    var btnOnSerial = document.getElementById("btnOnSerial");
    var btnOffSerial = document.getElementById("btnOffSerial");
+   var btnOnOtomatis = document.getElementById("btnOnOtomatis");
+   var btnOffOtomatis = document.getElementById("btnOffOtomatis");
 
    //var io = io.connect("https://control-led.herokuapp.com/");
    //var io = io.connect('https://ali.jagopesan.com/')
@@ -86,6 +93,14 @@ block content
 
    btnOffSerial.addEventListener("click", function(){
     io.emit("readsensor", {status: false});
+   });
+
+   btnOnOtomatis.addEventListener("click", function(){
+    io.emit("otomatis", {status: true});
+   });
+
+   btnOffOtomatis.addEventListener("click", function(){
+    io.emit("otomatis", {status: false});
    });
 
    io.on("relay1", function(data){

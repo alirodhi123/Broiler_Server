@@ -6,7 +6,8 @@ var broilerSchema = mongoose.Schema({
 		fan: Boolean,
 		spray: Boolean,
 		exhaust: Boolean,
-		sensor: Boolean
+		sensor: Boolean,
+		otomatis: Boolean
 	},
 	logs:[{
 		title: String,

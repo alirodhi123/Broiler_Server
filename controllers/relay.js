@@ -109,3 +109,18 @@ exports.updateRelaySensor = (req, res) => {
 	});
 };
 
+exports.updateRelayOtomatis = (req, res) => {
+	var id_user = "5b2cc36cadbf751d34d76a67";
+	var updateState = {
+		"relay.otomatis": req.body.state
+	}
+	BroilerSchema.findByIdAndUpdate(id_user, updateState, function(err, data){
+		if(err){
+			return console.log(err);
+		}
+		BroilerSchema.findById(id_user, (err, result) => {
+			res.json(result.relay);
+		});
+	});
+};
+

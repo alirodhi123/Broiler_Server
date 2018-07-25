@@ -59,8 +59,8 @@ exports.sensorCreate = async (req, res)=>{
   				temp: req.body.TCA,
 				hum: req.body.HUMA,
 				cdioksida: req.body.CO2,
-				amonia: req.body.NH3
-				//bat: req.body.bat,
+				amonia: req.body.NH3,
+				bat: req.body.BAT
 				//tanngal: req.body.tanngal
 			}
 		}
